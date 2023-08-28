@@ -1,6 +1,12 @@
 from fastapi import APIRouter
 from src.util.db.pyMongo.mopy import MongoConnection
+from geojson2vt.geojson2vt import geojson2vt
+from mercantile import Tile
+from fastapi import Depends
+from .util import tile_params
 from .util import response_to_geojson
+from vt2pbf import vt2pbf
+from fastapi.responses import Response
 
 class NewGeojsonController():
     
@@ -16,9 +22,15 @@ class NewGeojsonController():
            query = {"provice_name" : province} 
            return response_to_geojson(self._con.FindWitoutPagging( query ))
 
-        @self.__router.get("/get-province-as-mvt")
-        def Generate_province_as_mvt():
-            pass
+        @self.__router.get("/get-province-as-mvt/{z}/{x}/{y}/")
+        def Generate_province_as_mvt(
+            tile: Tile = Depends(tile_params)
+        ):
+            tile_index = geojson2vt(response_to_geojson(self._con.FindWitoutPagging()) , {})
+
+            vt = tile_index.get_tile(tile.z , tile.x , tile.y)
+
+            return Response(bytes(vt2pbf(vt)) , media_type="application/x-protobuf")
 
         @self.__router.get("/get-color-province")
         def Get_color_province():

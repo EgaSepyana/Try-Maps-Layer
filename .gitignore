@@ -1,8 +1,10 @@
+# Logs
 .env
+*.json
 __pycache__/
 venv/
 
-# Logs
+
 logs
 *.log
 npm-debug.log*

@@ -1,0 +1,73 @@
+:root {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .mapboxgl-ctrl-logo {
+    display: none !important;
+  }
+  
+  .tooltip-map{
+    position: absolute;
+    margin: 12px 12px 12px 12px;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tooltip-map .province-name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    gap: 5px;
+  }
+  
+  .tooltip-map .province-name:hover .box{
+    transform: translateY(-3px);
+  }
+  
+  .tooltip-map .province-name:hover span{
+    color: #000000;
+  }
+  
+  .tooltip-map .province-name .box{
+    transition: all .4s ease;
+    width: 13px; 
+    height: 13px;
+    background-color: black;
+  }
+  
+  .tooltip-map .province-name span{
+    color: #696868;
+    transition: all .4s ease;
+    font-size: 12px;
+  }
+  /* .map-container { */
+      /* position: absolute; */
+      /* height: 100vh;
+      max-width: 1800px;
+    }
+    
+  
+    .sidebarStyle {
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 12px;
+      background-color: #404040;
+      color: #ffffff;
+      z-index: 1 !important;
+      padding: 6px;
+      font-weight: bold;
+    } */
